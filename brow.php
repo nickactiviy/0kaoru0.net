@@ -1,36 +1,33 @@
+function get_client_browser() {
 
-function get_client_ip() {
+    $browser = '';
 
-    $ipaddress = '';
+    if(strpos($_SERVER['HTTP_USER_AGENT'], 'Netscape'))
 
-    if (getenv('HTTP_CLIENT_IP'))
+        $browser = 'Netscape';
 
-        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox'))
 
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $browser = 'Firefox';
 
-        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome'))
 
-    else if(getenv('HTTP_X_FORWARDED'))
+        $browser = 'Chrome';
 
-        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if (strpos($_SERVER['HTTP_USER_AGENT'], 'Opera'))
 
-    else if(getenv('HTTP_FORWARDED_FOR'))
+        $browser = 'Opera';
 
-        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE'))
 
-    else if(getenv('HTTP_FORWARDED'))
-
-       $ipaddress = getenv('HTTP_FORWARDED');
-
-    else if(getenv('REMOTE_ADDR'))
-
-        $ipaddress = getenv('REMOTE_ADDR');
+        $browser = 'Internet Explorer';
 
     else
 
-        $ipaddress = 'IP tidak dikenali';
+        $browser = 'Other';
 
-    return $ipaddress;
+    return $browser;
 
 }
+
+?>
